@@ -1,0 +1,62 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'browser-sync' ]
+2 info using npm@2.15.9
+3 info using node@v4.6.1
+4 verbose install initial load of C:\Users\kollane\AppData\Roaming\npm\package.json
+5 verbose readDependencies loading dependencies from C:\Users\kollane\AppData\Roaming\npm\package.json
+6 silly cache add args [ 'browser-sync', null ]
+7 verbose cache add spec browser-sync
+8 silly cache add parsed spec Result {
+8 silly cache add   raw: 'browser-sync',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'browser-sync',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: 'latest',
+8 silly cache add   type: 'tag' }
+9 silly addNamed browser-sync@latest
+10 verbose addNamed "latest" is being treated as a dist-tag for browser-sync
+11 info addNameTag [ 'browser-sync', 'latest' ]
+12 silly mapToRegistry name browser-sync
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry data Result {
+15 silly mapToRegistry   raw: 'browser-sync',
+15 silly mapToRegistry   scope: null,
+15 silly mapToRegistry   name: 'browser-sync',
+15 silly mapToRegistry   rawSpec: '',
+15 silly mapToRegistry   spec: 'latest',
+15 silly mapToRegistry   type: 'tag' }
+16 silly mapToRegistry uri https://registry.npmjs.org/browser-sync
+17 verbose addNameTag registry:https://registry.npmjs.org/browser-sync not in flight; fetching
+18 verbose request uri https://registry.npmjs.org/browser-sync
+19 verbose request no auth needed
+20 info attempt registry request try #1 at 3:46:49 PM
+21 verbose request id 1d9dea3ef19ea171
+22 http request GET https://registry.npmjs.org/browser-sync
+23 info retry will retry, error on last attempt: Error: unable to get local issuer certificate
+24 info attempt registry request try #2 at 3:47:01 PM
+25 http request GET https://registry.npmjs.org/browser-sync
+26 info retry will retry, error on last attempt: Error: unable to get local issuer certificate
+27 info attempt registry request try #3 at 3:48:02 PM
+28 http request GET https://registry.npmjs.org/browser-sync
+29 verbose stack Error: unable to get local issuer certificate
+29 verbose stack     at Error (native)
+29 verbose stack     at TLSSocket.<anonymous> (_tls_wrap.js:1022:38)
+29 verbose stack     at emitNone (events.js:67:13)
+29 verbose stack     at TLSSocket.emit (events.js:166:7)
+29 verbose stack     at TLSSocket._init.ssl.onclienthello.ssl.oncertcb.TLSSocket._finishInit (_tls_wrap.js:586:8)
+29 verbose stack     at TLSWrap.ssl.onclienthello.ssl.oncertcb.ssl.onnewsession.ssl.onhandshakedone (_tls_wrap.js:428:38)
+30 verbose cwd D:\Eleza\Java\coursera-test\site
+31 error Windows_NT 6.1.7601
+32 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "browser-sync"
+33 error node v4.6.1
+34 error npm  v2.15.9
+35 error code UNABLE_TO_GET_ISSUER_CERT_LOCALLY
+36 error unable to get local issuer certificate
+37 error If you need help, you may report this error at:
+37 error     <https://github.com/npm/npm/issues>
+38 verbose exit [ 1, true ]
