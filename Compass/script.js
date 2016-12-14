@@ -13,9 +13,15 @@ require([
   "esri/symbols/SimpleLineSymbol",
   "esri/symbols/SimpleMarkerSymbol",
   "esri/layers/FeatureLayer",
+  "esri/arcgis/OAuthInfo",
+  "esri/IdentityManager",
   "dojo/domReady!"
-], function(Color, dom, domGeom, has, on, parser, ready, win, Point, Graphic, Map, SimpleLineSymbol, SimpleMarkerSymbol,FeatureLayer) {
+], function(Color, dom, domGeom, has, on, parser, ready, win, Point, Graphic, Map, SimpleLineSymbol, SimpleMarkerSymbol,FeatureLayer,OAuthInfo,esriId) {
 
+  var info = new OAuthInfo({
+    appId: "x8FiTutUWxmf8iOE",
+    popup: true
+  });
   var map;
   var COMPASS_SIZE = 125;
   var pt;
@@ -48,7 +54,7 @@ require([
       slider: false
     });
 
-    var featureLayer = new FeatureLayer("https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0");
+    var featureLayer = new FeatureLayer("https://services.arcgis.com/8ZrugnbQmt8uh376/arcgis/rest/services/Road_Survey/FeatureServer/0");
 
     map.addLayer(featureLayer);
 
