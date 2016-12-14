@@ -13,10 +13,11 @@ require([
   "esri/symbols/SimpleLineSymbol",
   "esri/symbols/SimpleMarkerSymbol",
   "esri/layers/FeatureLayer",
+  "esri/InfoTemplate",
   "esri/arcgis/OAuthInfo",
   "esri/IdentityManager",
   "dojo/domReady!"
-], function(Color, dom, domGeom, has, on, parser, ready, win, Point, Graphic, Map, SimpleLineSymbol, SimpleMarkerSymbol,FeatureLayer,OAuthInfo,esriId) {
+], function(Color, dom, domGeom, has, on, parser, ready, win, Point, Graphic, Map, SimpleLineSymbol, SimpleMarkerSymbol,FeatureLayer,InfoTemplate,OAuthInfo,esriId) {
 
   var info = new OAuthInfo({
     appId: "x8FiTutUWxmf8iOE",
@@ -54,8 +55,13 @@ require([
       slider: false
     });
 
-    var featureLayer = new FeatureLayer("https://services.arcgis.com/8ZrugnbQmt8uh376/arcgis/rest/services/Road_Survey/FeatureServer/0");
-
+    var url="https://services.arcgis.com/8ZrugnbQmt8uh376/ArcGIS/rest/services/Adderley_Edge_WWN_Model_AGOL/FeatureServer/0";
+    var template = new InfoTemplate("Survey Details","Construction Activity: ${Construction_Activity}");
+    var featureLayer = new FeatureLayer(url,{
+      id:"Survey Details",
+      infoTemplate: template
+    });
+    
     map.addLayer(featureLayer);
 
     on(map, "load", mapLoadHandler);
