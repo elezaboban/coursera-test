@@ -55,7 +55,7 @@ require([
       slider: false
     });
 
-    var url="https://services.arcgis.com/8ZrugnbQmt8uh376/ArcGIS/rest/services/Adderley_Edge_WWN_Model_AGOL/FeatureServer/0";
+    var url="https://services.arcgis.com/8ZrugnbQmt8uh376/arcgis/rest/services/Road_Survey/FeatureServer/0";
     var template = new InfoTemplate("Survey Details","Construction Activity: ${Construction_Activity}");
     var featureLayer = new FeatureLayer(url,{
       id:"Survey Details",
