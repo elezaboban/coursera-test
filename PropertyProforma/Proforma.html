@@ -1,0 +1,313 @@
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Property Proforma</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.23/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.23/esri/css/esri.css">
+
+    <script src="https://js.arcgis.com/3.23/"></script>
+    <script>
+      var map;
+
+      require([
+        "esri/map", "esri/dijit/OverviewMap","dojo/dom", "dojo/on",
+        "dojo/parser", "esri/tasks/query", "esri/tasks/QueryTask", 
+        "esri/arcgis/OAuthInfo", "esri/IdentityManager",         
+        "dijit/layout/BorderContainer", "dijit/layout/ContentPane",
+        "dojo/domReady!"
+        
+      ], function (
+        Map, OverviewMap, dom, on,
+        parser, Query, QueryTask,
+        OAuthInfo,esriId
+      ) {
+
+        var info = new OAuthInfo({
+            appId: "x8FiTutUWxmf8iOE",
+            popup: true
+        });
+        parser.parse(); 
+        var url="https://services.arcgis.com/8ZrugnbQmt8uh376/arcgis/rest/services/SW_Zero_Flooding/FeatureServer/0";
+        var queryTask = new QueryTask("https://services.arcgis.com/8ZrugnbQmt8uh376/arcgis/rest/services/SW_Zero_Flooding/FeatureServer/0");
+
+        var query = new Query();
+        query.returnGeometry = false;
+        query.outFields = [
+          "OSAPR","Site_Name","MIMS_A",  "MIMS_B", "CSMS_A", "CSMS_B",
+          "Total_coun" 
+        ];
+
+        on(dom.byId("execute"), "click", execute);
+
+        function execute () {
+          
+          var formquery;
+          formquery= dom.byId("OSAPR").value;
+          query.where ="OSAPR = '" + formquery + "'"; 
+          queryTask.execute(query, showResults);
+        }
+
+        function showResults (results) {
+          var resultItems = [];
+          var population =[];
+          var resultCount = results.features.length;
+          for (var i = 0; i < resultCount; i++) {
+            var featureAttributes = results.features[i].attributes;
+            for (var attr in featureAttributes) {
+              resultItems.push("<b>" + attr + ":</b>  " + featureAttributes[attr] +"<br>");
+              population.push(featureAttributes[attr]);
+            }
+            var total=0;
+            total = population[6] -population[5]
+            resultItems.push("<br>"+"<b>"+"POPULATION CHANGE (2007-2000): "+"</b>"+total);
+          }
+
+          dom.byId("info").innerHTML = resultItems.join("");
+          dom.byId("statename").innerHTML = resultItems[0];
+        }
+
+      });
+    </script>
+
+    <style>
+
+        table, td {
+                border: 1px solid black;
+                padding: 5px;
+                font-family:arial;
+                text-align:top;
+                height:45;
+        }
+        #section1 {height:25;}
+        #sewerissues{height:100;}
+        #info {
+            padding: 0px;
+            height:250;}
+
+    </style>
+</head>
+<body class="claro">
+
+  
+    <input type="text" id="OSAPR" value="APXQJP8J6LG11FTGMH">
+    <input id="execute" type="button" value="Get Details">   
+
+    <div>
+        <p>
+            <img
+                width="626"
+                height="114"
+                src="file:///C:/Users/EKOLLA~1/AppData/Local/Temp/msohtmlclip1/01/clip_image003.gif"
+            />
+        </p>   
+    </div>
+           
+    <div>
+        <table  cellspacing="0" cellpadding="0" >
+            <tbody>
+                <tr>
+                    <td width="143" colspan="2">
+                        <p> <strong> HISTORICAL </strong> </p>
+                    </td>
+                    <td width="47" align="middle" > 
+                        <p> x </p>       
+                    </td>
+                    <td width="146" colspan="3" >
+                        <p> <strong> REACTIVE  </strong> </p>
+                    </td>
+                    <td width="45" align="middle" >
+                        <p> x </p>  
+                    </td>
+                    <td width="211" colspan="4" >
+                        <p> <strong> PHOTOS TAKEN </strong> </p>
+                    </td>
+                    <td width="46" align="middle" >
+                        <p>  x </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="254" colspan="4" >
+                        <p> <strong> FCEO NAME </strong> </p>
+                    </td>
+                    <td width="384" colspan="8" > 
+                        <p>  xxx </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="254" colspan="4" >
+                        <p> <strong>  DATE OF VISIT </strong> </p>      
+                    </td>
+                    <td width="384" colspan="8">
+                        <p>  xxx </p>
+                    </td>
+                </tr>
+
+                <tr> 
+                    <td width="126">
+                        <p> <strong> REQUESTOR </strong> </p>
+                    </td>
+                    <td  width="255" colspan="6" >
+                        <p>  xxx </p>
+                    </td>
+                    <td width="123" colspan="2" >
+                        <p> <strong> DATE  </strong> </p>
+                    </td>
+                    <td width="134"  colspan="3" align="middle">
+                        <p> 10/01/2018 </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="190" colspan="3" >
+                        <p> <strong> HOUSE NAME/NUMBER:  </strong> </p>
+                    </td>
+                    <td width="448" colspan="9" >
+                        <p> xxx </p> 
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="190" colspan="3" >
+                        <p> <strong> STREET NAME: </strong> </p> 
+                    </td>
+                    <td width="448" colspan="9" >
+                        <p> xxx </p> 
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="190" colspan="3" >
+                        <p> <strong> TOWN: </strong> </p> 
+                    </td>
+                    <td width="448" colspan="9" >
+                        <p> xxx </p> 
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="190" colspan="3" >
+                        <p> <strong> COUNTY: </strong> </p> 
+                    </td>
+                    <td width="448" colspan="9" >
+                        <p> xxx </p> 
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="190" colspan="3" >
+                        <p> <strong> POSTCODE: </strong> </p>
+                    <td width="448" colspan="9" >
+                        <p> xxx </p> 
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id=section1 width="638" colspan="12" bgcolor="#59B6E3" > 
+                    <p> </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="126" >
+                        <p> <strong> CSMS NUMBER </strong> </p>
+                    </td>
+                    <td width="194" colspan="4" >
+                        <p> xxx </p>
+                    </td>
+                    <td width="127" colspan="3" >
+                        <p> <strong> CSMS RAISE DATE </strong> </p>
+                    </td>
+                    <td width="191" colspan="4" align="middle"  >
+                        <p> xx/xx/xxxx </p> 
+                    </td>
+                </tr>
+                <tr> 
+                    <td width="190" colspan="3" >
+                        <p> <strong> PROPERTIES VISITED </strong> </p>
+                    </td>
+                    <td width="448" colspan="9" >
+                        <p> xxx </p>  
+                    </td>
+                </tr>
+                <tr>
+                    <td width="126" >
+                        <p>  <strong> MANHOLES LIFTED  </strong>  </p>
+                    </td>
+                    <td width="128" colspan="3" align="middle">
+                        <p> x </p>
+                    </td>
+                    <td width="128" colspan="3" >
+                        <p> <strong> MH LOCATED </strong>  </p>
+                    </td>
+                    <td width="257" colspan="5" align="middle" >
+                        <p> x </p>  
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td width="190" colspan="3" rowspan="4">
+                        <p>
+                            <strong> SEWER ISSUES FOUND </strong>
+                            <strong> (PLEASE TICK BOXES) </strong>    
+                        </p>
+                    </td>
+                    <td width="322" colspan="7">
+                        <p> <strong> FULL BLOCKAGE/PARTIAL  BLOCKAGE </strong> </p>
+                    </td>
+                    <td width="126" colspan="2" align="middle" >
+                        <p> x </p> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="322" colspan="7" >
+                        <p> <strong> EVIDENCE OF FOG </strong>  </p>
+                    </td>
+                    <td width="126" colspan="2" align="middle" >
+                        <p> x </p> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="322" colspan="7">
+                        <p> <strong> EVIDENCE OF RAG </strong>  </p>
+                    </td>
+                    <td width="126" colspan="2" align="middle" >
+                        <p> x </p> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="322" colspan="7">
+                        <p>
+                            <strong> PIPE/MANHOLE DEFECT </strong>
+                        </p>
+                    </td> 
+                    <td width="126" colspan="2" align="middle">
+                        <p> x </p> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="190" colspan="3">
+                        <p> <strong> SEWER ISSUES COMMENTS </strong> </p>
+                    </td>
+                    <td id=sewerissues width="448" colspan="9">
+                        <p>  xxxxx </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td  width="190" colspan="3" align="left">
+                        <p
+                            id="info" >
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
